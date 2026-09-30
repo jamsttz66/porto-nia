@@ -61,6 +61,28 @@
     counters.forEach(el=>cIO.observe(el));
   }
 
+  // lightbox untuk dokumentasi & sertifikat
+  const lb=document.createElement('div');
+  lb.className='lightbox';
+  lb.innerHTML='<button aria-label="Tutup">✕</button><figure><img alt=""><figcaption></figcaption></figure>';
+  document.body.appendChild(lb);
+  const lbImg=lb.querySelector('img'), lbCap=lb.querySelector('figcaption'), lbClose=lb.querySelector('button');
+  const openLB=(src,alt,cap)=>{
+    lbImg.src=src; lbImg.alt=alt||''; lbCap.textContent=cap||'';
+    lb.classList.add('open'); document.body.style.overflow='hidden';
+  };
+  const closeLB=()=>{ lb.classList.remove('open'); document.body.style.overflow=''; lbImg.src=''; };
+  document.querySelectorAll('.gal,.cert>img,.job-gallery img').forEach(el=>{
+    const img=el.tagName==='IMG'?el:el.querySelector('img');
+    if(!img) return;
+    const cap=el.dataset?.title||el.querySelector('figcaption b')?.textContent||img.alt||'';
+    img.style.cursor='zoom-in';
+    img.addEventListener('click',()=>openLB(img.src,img.alt,cap));
+  });
+  lbClose.addEventListener('click',closeLB);
+  lb.addEventListener('click',e=>{ if(e.target===lb) closeLB(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLB(); });
+
   // subtle parallax on hero blob
   if(!reduce){
     const blob=document.querySelector('.hero-blob');
