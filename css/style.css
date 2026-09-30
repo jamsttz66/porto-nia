@@ -107,16 +107,11 @@ img{max-width:100%;display:block}
   animation:cardRise .9s .2s both cubic-bezier(.2,.8,.2,1);
 }
 .photo-frame{
-  position:relative;border-radius:16px;height:290px;
-  background:linear-gradient(150deg,var(--peach),var(--butter) 60%,var(--sage));
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  position:relative;border-radius:16px;height:340px;
+  background:var(--white);
+  display:flex;align-items:flex-start;justify-content:center;overflow:hidden;
 }
-.photo-frame:before{
-  content:"";position:absolute;inset:0;
-  background-image:radial-gradient(rgba(255,255,255,.6) 1px,transparent 1px);
-  background-size:16px 16px;opacity:.5;
-}
-.photo-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%}
+.photo-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center top;background:var(--white)}
 .photo-initials{
   position:relative;font-family:'Fraunces',serif;font-size:4.4rem;font-weight:600;
   color:rgba(44,31,26,.28);letter-spacing:-.04em;
